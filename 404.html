@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <script type="text/javascript">
+      // Redirect all 404s to index.html for client-side routing
+      const redirect = '/' + location.pathname + location.search + location.hash;
+      sessionStorage.redirect = redirect;
+      window.location.replace('/');
+    </script>
+  </head>
+  <body></body>
+</html>
