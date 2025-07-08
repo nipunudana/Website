@@ -3,12 +3,25 @@
 <html lang="en">
 <head>
     <script>
-        // Handle the redirect from 404.html
+        // Restore the original URL from parameters
         (function() {
-            var redirect = sessionStorage.redirect;
-            delete sessionStorage.redirect;
-            if (redirect && redirect !== location.href) {
-                history.replaceState(null, null, redirect);
+            var query = window.location.search.slice(1);
+            var params = {};
+            
+            if (query) {
+                query.split('&').forEach(function(param) {
+                    var parts = param.split('=');
+                    params[parts[0]] = decodeURIComponent(parts[1] || '');
+                });
+            }
+            
+            if (params.p) {
+                var originalPath = params.p;
+                var originalSearch = params.q ? '?' + params.q : '';
+                var originalHash = params.h ? '#' + params.h : '';
+                
+                // Restore the original URL
+                window.history.replaceState(null, null, originalPath + originalSearch + originalHash);
             }
         })();
     </script>
