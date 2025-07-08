@@ -2,6 +2,14 @@
 
 <html lang="en">
 <head>
+    <script type="text/javascript">
+      if (sessionStorage.redirect) {
+        const redirectUrl = sessionStorage.redirect;
+        delete sessionStorage.redirect;
+        history.replaceState(null, null, redirectUrl);
+      }
+    </script>
+
     <meta charset="utf-8">
     
     
