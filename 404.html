@@ -2,20 +2,17 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Loading...</title>
+    <title>Redirecting...</title>
     <script>
-        // Capture the current path and redirect to index with encoded path
-        var pathSegmentsToKeep = 1;
+        // Clean URL preservation without mangling
         var l = window.location;
-        var redirectPath = l.pathname.split('/').slice(pathSegmentsToKeep).join('/');
+        var originalPath = l.pathname;
+        var originalSearch = l.search;
+        var originalHash = l.hash;
         
-        // Store the original path in the URL parameters
-        l.replace(
-            l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
-            '/?p=/' + redirectPath +
-            (l.search ? '&q=' + l.search.slice(1) : '') +
-            (l.hash ? '&h=' + l.hash.slice(1) : '')
-        );
+        // Redirect to index with the original path encoded
+        var redirectUrl = '/?redirect=' + encodeURIComponent(originalPath + originalSearch + originalHash);
+        window.location.replace(redirectUrl);
     </script>
 </head>
 <body></body>
