@@ -3,29 +3,17 @@
 <html lang="en">
 <head>
     <script>
-        // Restore the original URL from parameters
+        // Simple URL restoration
         (function() {
-            var query = window.location.search.slice(1);
-            var params = {};
+            var urlParams = new URLSearchParams(window.location.search);
+            var redirectPath = urlParams.get('redirect');
             
-            if (query) {
-                query.split('&').forEach(function(param) {
-                    var parts = param.split('=');
-                    params[parts[0]] = decodeURIComponent(parts[1] || '');
-                });
-            }
-            
-            if (params.p) {
-                var originalPath = params.p;
-                var originalSearch = params.q ? '?' + params.q : '';
-                var originalHash = params.h ? '#' + params.h : '';
-                
-                // Restore the original URL
-                window.history.replaceState(null, null, originalPath + originalSearch + originalHash);
+            if (redirectPath) {
+                // Clean up the URL and restore the original path
+                history.replaceState(null, null, redirectPath);
             }
         })();
     </script>
-
     <meta charset="utf-8">
     
     
