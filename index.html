@@ -2,18 +2,6 @@
 
 <html lang="en">
 <head>
-    <script>
-        // Simple URL restoration
-        (function() {
-            var urlParams = new URLSearchParams(window.location.search);
-            var redirectPath = urlParams.get('redirect');
-            
-            if (redirectPath) {
-                // Clean up the URL and restore the original path
-                history.replaceState(null, null, redirectPath);
-            }
-        })();
-    </script>
     <meta charset="utf-8">
     
     
