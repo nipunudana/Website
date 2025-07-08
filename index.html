@@ -7,6 +7,7 @@
         const redirectUrl = sessionStorage.redirect;
         delete sessionStorage.redirect;
         history.replaceState(null, null, redirectUrl);
+        location.reload();
       }
     </script>
 
